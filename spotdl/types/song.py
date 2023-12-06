@@ -102,7 +102,7 @@ class Song:
         return cls(
             name=raw_track_meta["name"],
             artists=[artist["name"] for artist in raw_track_meta["artists"]],
-            artist=raw_track_meta["artists"][0]["name"],'
+            artist=raw_track_meta["artists"][0]["name"],
             artist_id=artist_id,
             album_id=album_id,
             album_name=raw_album_meta["name"],
