@@ -34,6 +34,7 @@ class Song:
     name: str
     artists: List[str]
     artist: str
+    artist_id: str
     genres: List[str]
     disc_number: int
     disc_count: int
@@ -90,8 +91,8 @@ class Song:
             raise SongError(f"Track no longer exists: {url}")
 
         # get artist info
-        primary_artist_id = raw_track_meta["artists"][0]["id"]
-        raw_artist_meta: Dict[str, Any] = spotify_client.artist(primary_artist_id)  # type: ignore
+        artist_id = raw_track_meta["artists"][0]["id"]
+        raw_artist_meta: Dict[str, Any] = spotify_client.artist(artist_id)  # type: ignore
 
         # get album info
         album_id = raw_track_meta["album"]["id"]
@@ -101,7 +102,8 @@ class Song:
         return cls(
             name=raw_track_meta["name"],
             artists=[artist["name"] for artist in raw_track_meta["artists"]],
-            artist=raw_track_meta["artists"][0]["name"],
+            artist=raw_track_meta["artists"][0]["name"],'
+            artist_id=artist_id,
             album_id=album_id,
             album_name=raw_album_meta["name"],
             album_artist=raw_album_meta["artists"][0]["name"],
