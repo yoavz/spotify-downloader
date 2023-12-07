@@ -3,7 +3,7 @@ Song module that hold the Song and SongList classes.
 """
 
 import json
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from typing import Any, Dict, List, Optional, Tuple
 
 from rapidfuzz import fuzz
@@ -52,8 +52,8 @@ class Song:
     isrc: Optional[str]
     cover_url: Optional[str]
     copyright_text: Optional[str]
-    copyright_p: Optional[List[str]] = []
-    copyright_c: Optional[List[str]] = []
+    copyright_p: List[str] = field(default_factory=list)
+    copyright_c: List[str] = field(default_factory=list)
     download_url: Optional[str] = None
     lyrics: Optional[str] = None
     popularity: Optional[int] = None
